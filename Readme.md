@@ -79,5 +79,7 @@ O código foi desenvolvido em formato de Jupyter Notebook para facilitar a visua
 4. O arquivo `previsoes_brasileirao_2026.csv` será gerado no diretório raiz para importação no banco de dados  
 
 É possível utilizar o modelo para analises futuras, basta refazer o passo 3 para a rodada análisada e verificar se o scraper ainda funciona, rodar novamente os 3 modelos de ML e ver qual mais se encaixa e refazer o processamento.
+
 Neste projeto investi 20 horas, e só foi possível graças as aulas de ML do @TeoCalvo 🧙.
+
 Obs: O nome se dá pelas superioridade em vitórias do Internacional em grenais na data do push.
