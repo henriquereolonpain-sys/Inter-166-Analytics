@@ -5,6 +5,7 @@ import requests
 import pandas as pd
 import matplotlib.pyplot as plt 
 import kagglehub
+import numpy as np
 from kagglehub import KaggleDatasetAdapter
 from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import SMOTE
@@ -127,32 +128,23 @@ y_camp = df_modelo_cl['campeao']
 y_lib = df_modelo_cl['libertadores']
 
 X_camp_res, y_camp_res = sm.fit_resample(X, y_camp)
-modelo_rf_campeao = RandomForestClassifier(random_state=42)
-modelo_rf_campeao.fit(X_camp_res, y_camp_res)
+modelo_lr_campeao = LogisticRegression(random_state=42, max_iter=1000)
+modelo_lr_campeao.fit(X_camp_res, y_camp_res)
 
 X_lib_res, y_lib_res = sm.fit_resample(X, y_lib)
-modelo_rf_libertadores = RandomForestClassifier(random_state=42)
-modelo_rf_libertadores.fit(X_lib_res, y_lib_res)
+modelo_lr_libertadores = LogisticRegression(random_state=42, max_iter=1000)
+modelo_lr_libertadores.fit(X_lib_res, y_lib_res)
 
-plt.figure(figsize=(20,10))
-plot_tree(modelo_rf.estimators_[0], 
-          feature_names=['pontos'], 
-          class_names=['Nao Rebaixado', 'Rebaixado'], 
-          filled=True, 
-          rounded=True, 
-          max_depth=3)
-plt.title("Visualizacao de 1 Arvore da Random Forest (Logica de Rebaixamento)")
-plt.show()
+pontos_range = np.linspace(0, 80, 100).reshape(-1, 1)
+probs = modelo_lr_campeao.predict_proba(pontos_range)[:, 1]
 
-plt.figure(figsize=(20,10))
-plot_tree(modelo_rf.estimators_[0], 
-          feature_names=['pontos'], 
-          class_names=['Nao Rebaixado', 'Rebaixado'], 
-          filled=True, 
-          rounded=True, 
-          max_depth=3)
-plt.title("Visualizacao de 1 Arvore da Random Forest (Logica de Rebaixamento)")
+plt.plot(pontos_range, probs)
+plt.xlabel("Pontos")
+plt.ylabel("Probabilidade de ser Campeão")
+plt.title("Curva da Regressão Logística")
 plt.show()
+print("Coeficiente:", modelo_lr_campeao.coef_)
+print("Intercepto:", modelo_lr_campeao.intercept_)
 
 
 # %%
@@ -175,12 +167,12 @@ y_lib = df_modelo_cl['libertadores']
 sm = SMOTE(random_state=42)
 
 X_camp_res, y_camp_res = sm.fit_resample(X_geral, y_camp)
-modelo_rf_campeao = RandomForestClassifier(random_state=42)
-modelo_rf_campeao.fit(X_camp_res, y_camp_res)
+modelo_lr_campeao = LogisticRegression(random_state=42, max_iter=1000)
+modelo_lr_campeao.fit(X_camp_res, y_camp_res)
 
 X_lib_res, y_lib_res = sm.fit_resample(X_geral, y_lib)
-modelo_rf_libertadores = RandomForestClassifier(random_state=42)
-modelo_rf_libertadores.fit(X_lib_res, y_lib_res)
+modelo_lr_libertadores = LogisticRegression(random_state=42, max_iter=1000)
+modelo_lr_libertadores.fit(X_lib_res, y_lib_res)
 
 url = "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_S%C3%A9rie_A"
 headers = {'User-Agent': 'Mozilla/5.0'}
@@ -192,15 +184,15 @@ df_2026 = tabelas[0]
 df_2026 = df_2026.iloc[:, [1, 2]].copy()
 df_2026.columns = ['time', 'pontos']
 
-df_2026['previsao_rebaixamento'] = modelo_rf.predict(df_2026[['pontos']])
+df_2026['previsao_rebaixamento'] = modelo_lr.predict(df_2026[['pontos']])
 
-prob_queda = modelo_rf.predict_proba(df_2026[['pontos']])
+prob_queda = modelo_lr.predict_proba(df_2026[['pontos']])
 df_2026['risco_queda'] = (prob_queda[:, 1] * 100).round(2).astype(str) + '%'
 
-prob_camp = modelo_rf_campeao.predict_proba(df_2026[['pontos']])
+prob_camp = modelo_lr_campeao.predict_proba(df_2026[['pontos']])
 df_2026['chance_campeao'] = (prob_camp[:, 1] * 100).round(2).astype(str) + '%'
 
-prob_lib = modelo_rf_libertadores.predict_proba(df_2026[['pontos']])
+prob_lib = modelo_lr_libertadores.predict_proba(df_2026[['pontos']])
 df_2026['chance_libertadores'] = (prob_lib[:, 1] * 100).round(2).astype(str) + '%'
 
 df_2026.index = df_2026.index + 1
