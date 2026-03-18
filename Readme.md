@@ -49,15 +49,25 @@ Treinamento e comparação de três algoritmos:
 - Regressão Logística  sws
 - Random Forest  
 
-Utilização da técnica SMOTE para balanceamento das classes minoritárias.
+A regressão Logística apresentou a melhor métrica de F1-Score e foi selecionado como preditor oficial.
 
-O Random Forest apresentou a melhor métrica de F1-Score e foi selecionado como preditor oficial.
+![Modelo ML](Imgs/ML.png)
+
 
 ### 6. Web Scraping e Previsão 2026
-Raspagem da tabela de classificação atualizada da Wikipedia, aplicação do modelo Random Forest treinado e cálculo das probabilidades para a temporada atual.
+Raspagem da tabela de classificação atualizada da Wikipedia, aplicação do modelo regressão Logística treinado e cálculo das probabilidades para a temporada atual.
 
 ### 7. Persistência de Dados
-Exportação dos resultados finais estruturados em formato CSV para ingestão no MySQL e consumo no Power BI.
+Exportação dos resultados finais estruturados em formato CSV para ingestão e consumo no Power BI.
+
+## Conclusão
+Este projeto construiu um pipeline de previsão para o Campeonato Brasileiro Série A utilizando dados históricos e modelos de Machine Learning. Mesmo com uma abordagem simples baseada em pontos, modelos como Regressão Logística apresentaram resultados consistentes na identificação de padrões de desempenho.
+
+As métricas indicam que o problema é complexo e ainda há espaço para melhorias, especialmente com a inclusão de novas variáveis e ajustes nos modelos. Ainda assim, o projeto demonstra bem a construção de um pipeline completo, desde os dados até a geração de insights.
+:D
+
+![BI](Imgs/Bi.png)
+![Saída](Imgs/output.png)
 
 ---
 
