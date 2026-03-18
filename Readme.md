@@ -69,6 +69,13 @@ As métricas indicam que o problema é complexo e ainda há espaço para melhori
 ![BI](Imgs/Bi.png)
 ![Saída](Imgs/output.png)
 
+
+### Problemas
+
+Alguns times estão com menos jogos que outros, infelizmente como o bjetivo principal era focar no inter eu mantive o a análise já que o mesmo possui os 6 jogos.
+
+Aparecem vários TRUES na tabela rebaixado mas acredito que o problema seja que 40% dos times possuem 5 jogos ou menos e que também ocorreram muitos empates, portando em comparação com a base de dados esse campeonato está se mostrando um com poucos pontos.
+
 ---
 
 ## Como Executar
