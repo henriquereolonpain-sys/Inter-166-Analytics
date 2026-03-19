@@ -95,7 +95,7 @@ O código foi desenvolvido em formato de Jupyter Notebook para facilitar a visua
 3. Execute as células sequencialmente do Passo 1 ao Passo 7  
 4. O arquivo `previsoes_brasileirao_2026.csv` será gerado no diretório raiz para importação no banco de dados  
 
-É possível utilizar o modelo para analises futuras, basta refazer o passo 3 para a rodada análisada e verificar se o scraper ainda funciona, rodar novamente os 3 modelos de ML e ver qual mais se encaixa e refazer o processamento.
+É possível utilizar o modelo para analises futuras, basta refazer o passo 3 para a  rodada análisada ex:df_recorte = df[df['rodada'] <= 7].copy() e verificar se o scraper ainda funciona, rodar novamente os 3 modelos de ML e ver qual mais se encaixa e refazer o processamento.
 
 Neste projeto investi 20 horas, e só foi possível graças as aulas de ML do @TeoCalvo 🧙.
 
