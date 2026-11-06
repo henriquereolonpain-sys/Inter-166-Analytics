@@ -1,6 +1,11 @@
 pandas
+numpy
+scipy
 requests
+lxml
+html5lib
 matplotlib
-kagglehub
 scikit-learn
+# apenas para o script v1 (Isso_é_ML.py):
+kagglehub
 imbalanced-learn

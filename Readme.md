@@ -1,4 +1,19 @@
-# Previsão do Campeonato Brasileiro (Série A) - 6ª Rodada
+# 🆕 v2 (nov/2026): Simulação Monte Carlo a 4 rodadas do fim
+
+A v2 (`simulacao_monte_carlo.py`) troca a classificação por pontos por um **modelo de Poisson** (ataque, defesa e mando de cada time) e **100 mil simulações** dos jogos restantes, com os critérios de desempate do regulamento. As probabilidades agora são coerentes: título soma 100% e Z4 soma 400%.
+
+![Z4](Imgs/v2_rebaixamento.png)
+
+O que mudou, a autocrítica da v1 e os resultados completos estão em [ATUALIZACAO_V2.md](ATUALIZACAO_V2.md).
+
+```bash
+pip install -r requirements.txt
+python simulacao_monte_carlo.py
+```
+
+---
+
+# Previsão do Campeonato Brasileiro (Série A) - 6ª Rodada (v1)
 
 ## Sobre o Projeto
 Este projeto de Ciência de Dados tem como objetivo prever o destino final das equipes(principalmente o Inter), no Campeonato Brasileiro (Série A) com base no desempenho acumulado apenas até a 6ª rodada.
